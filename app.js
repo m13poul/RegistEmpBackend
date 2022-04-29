@@ -36,6 +36,16 @@ connectToDB((err) => {
 // }, 6000);
 
 app.post("/", (req, res) => {
+  console.log(req.body);
+  if (
+    !req.body.firstName ||
+    !req.body.lastName ||
+    !req.body.email ||
+    !req.body.Gender
+  ) {
+    res.status(401).json({ "Dude...": "lame..." });
+    return;
+  }
   const today = new Date();
   const date_only =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
